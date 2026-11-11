@@ -1,7 +1,27 @@
 # iOS 27.0–27.1 越狱研究包
 
+![iOS](https://img.shields.io/badge/iOS-27.0%20%7C%2027.0.1%20%7C%2027.1-blue)
+![status](https://img.shields.io/badge/status-PoC%20ready-orange)
+![testers](https://img.shields.io/badge/testers-NEEDED-critical)
+![license](https://img.shields.io/badge/license-MIT-green)
+
 > 目标：自研 Dopamine 式越狱的第一步——拿到可用的内核内存破坏原语。
 > 本包只含**已用二进制 diff 实证**的东西，不含推测性 CVE 罗列。
+
+<table>
+<tr><td>
+
+### 🧪 招募测试者 · TESTERS WANTED
+
+三个 PoC 全部**没有真机验证**，全部卡在同一步：需要一台窗口内设备跑一次、回传 panic 日志。
+
+- ✅ 需要：**iOS 27.0 (24A437) / 27.0.1 (24A446) / 27.1 (仅 iPhone Duo)**，能装自签 app
+- ❌ 无效：27.2 / 27.2.1 —— 漏洞已修
+- 📋 步骤与回传格式见 **[TESTING.md](TESTING.md)**，5 分钟能跑完
+- 🎯 最有价值的一条：沙盒 app 能否 `IOServiceOpen("AppleAVE2Driver")`，一行返回值就能定路线
+
+</td></tr>
+</table>
 
 ---
 
@@ -136,3 +156,15 @@ iOS27_JB_Kit/
     ├── spec_ioctl_revoke_race.c   spec_race       spec revoke UAF
     └── ane_procedure_oob.c  ane_oob       ANE OOB（骨架）
 ```
+
+---
+
+## Star History
+
+<a href="https://star-history.com/#Mac-XK/iOS27-Kernel-Primitives&Date">
+  <img src="https://api.star-history.com/svg?repos=Mac-XK/iOS27-Kernel-Primitives&type=Date" alt="Star History Chart" width="640">
+</a>
+
+---
+
+**如果你只有 30 秒**：`cd poc && make` → 签名装到一台 27.0/27.0.1 设备 → 跑 `./ave_oob` → 把返回值和 panic 日志贴到 Issues。这一条数据能让这个仓库从"静态推断"变成"实测可用"。
