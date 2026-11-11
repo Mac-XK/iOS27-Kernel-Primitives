@@ -162,12 +162,11 @@ iOS27_JB_Kit/
 
 ## 复现素材
 
-本文档里的地址、偏移、边界值来自以下两个固件版本，均可从 Apple 公共 CDN 直接获取，无需账号：
+本文档里的地址、偏移、边界值基于 iOS 27.1：
 
 | 版本 | build | 直链 |
 |---|---|---|
 | iOS 27.1 | 24A94425 | `https://updates.cdn-apple.com/2026FallFCS/3f41a447-d8a6-48ae-83ae-056a64f57fd4/iPhone19,4_27.1_24A94425_Restore.ipsw` |
-| iOS 27.2 | 24B91020 | `https://updates.cdn-apple.com/2026FallFCS/8d0335dc-f553-4d16-b07b-28951fde8f9e/iPhone19,4_27.2_24B91020_Restore.ipsw` |
 
 机型 iPhone19,4（iPhone Duo），板型 `v6x-pandia`。
 
