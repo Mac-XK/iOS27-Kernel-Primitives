@@ -157,3 +157,24 @@ iOS27_JB_Kit/
 ---
 
 **跑一遍最快的方式**：`cd poc && make` → 签名装到一台 27.0/27.0.1 设备 → 跑 `./ave_oob` → 把返回值和 panic 日志贴到 Issues。这一条数据能让这个仓库从"静态推断"变成"实测可用"。
+
+---
+
+## 复现素材
+
+本文档里的地址、偏移、边界值来自以下两个固件版本，均可从 Apple 公共 CDN 直接获取，无需账号：
+
+| 版本 | build | 直链 |
+|---|---|---|
+| iOS 27.1 | 24A94425 | `https://updates.cdn-apple.com/2026FallFCS/3f41a447-d8a6-48ae-83ae-056a64f57fd4/iPhone19,4_27.1_24A94425_Restore.ipsw` |
+| iOS 27.2 | 24B91020 | `https://updates.cdn-apple.com/2026FallFCS/8d0335dc-f553-4d16-b07b-28951fde8f9e/iPhone19,4_27.2_24B91020_Restore.ipsw` |
+
+机型 iPhone19,4（iPhone Duo），板型 `v6x-pandia`。
+
+**只需要内核，不必下 13GB 整包**：IPSW 是 Zip64，Apple CDN 支持 `Range`，读出 zip 中央目录后
+单独取 `kernelcache.release.v6x-pandia` 这一个成员即可，约 24MB。
+
+取到后是一个 DER 封装的 IM4P，payload 为 LZFSE（magic `bvx2`），解压得到约 78MB 的 arm64e Mach-O 内核；
+kext 用 `ipsw kernel extract <kernelcache> com.apple.driver.AppleAVE2 -o ./out` 单独取出。
+
+其他机型把 `iPhone19,4` 和板型换成对应值即可，固件列表可查 `https://api.ipsw.me/v4/device/<identifier>?type=ipsw`。
