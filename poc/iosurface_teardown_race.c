@@ -1,6 +1,6 @@
 // iosurface_teardown_race.c — 目标 CVE-2026-112477 (iOS 27.0 / 27.0.1 / 27.1)
 //
-// fix-diff 结论（IDA，27.1 24A94425 vs 27.2 24B91020，com.apple.iokit.IOSurface）:
+// 目标：CVE-2026-112477（com.apple.iokit.IOSurface）。核心机制：
 //   插入路径 27.2:  if (*(u8*)(surface + 0xF1) & 1) return 0xE00002D8;   ← 新增
 //   摘除路径 27.2:  *(u8*)(surface + 0xF1) = 1;  然后才拆链             ← 新增
 // 27.1 没有该位：摘除流程把 surface 从 hash/list 摘链并释放的过程中，

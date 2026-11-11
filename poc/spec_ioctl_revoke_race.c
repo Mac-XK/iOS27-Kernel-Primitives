@@ -1,6 +1,6 @@
 // spec_ioctl_revoke_race.c — 目标：27.1 的 spec vnode revoke 竞态 UAF
 //
-// 依据（27.1 vs 27.2 diff，spec_vnops.c）：
+// 核心机制（spec_vnops.c）：
 //   27.2 在 spec ioctl 派发前新增：
 //       obj = *(vnode + 0xD8);                      // 后端对象（PAC，AUTDA 认证）
 //       if (obj && (*(u8*)(obj + 0x70) & 0x10))     // 已 revoke / teardown 标记

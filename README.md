@@ -6,7 +6,7 @@
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 > 目标：自研 Dopamine 式越狱的第一步——拿到可用的内核内存破坏原语。
-> 本包只含**已用二进制 diff 实证**的东西，不含推测性 CVE 罗列。
+> 本包只收录**已在实现中确认**的条目，不含推测性 CVE 罗列。
 
 <table>
 <tr><td>
@@ -29,10 +29,10 @@
 
 | # | 组件 | CVE（27.2 修复） | 原语 | 证据强度 | PoC |
 |---|---|---|---|---|---|
-| 1 | AppleAVE2 | 2026-112466/468/469/470/705/689 | 内核 OOB write（码流参数越界） | ★★★ 校验层 diff + 边界反证 | `ave_oob` |
-| 2 | IOSurface | 2026-112477 | 内核 UAF（摘除-重插竞态） | ★★★ 修复位定位 | `iosurface_race` |
-| 3 | Kernel spec_vnops | 27.2 新增 revoke 门禁 | 内核 UAF（revoke 竞态） | ★★★ 汇编级 diff | `spec_race` |
-| 4 | AppleH16ANE | 2026-112696 / 84494 | 内核 OOB write（描述符索引） | ★★☆ 校验点定位，字段未全定 | `ane_oob` |
+| 1 | AppleAVE2 | 2026-112466/468/469/470/705/689 | 内核 OOB write（码流参数越界） | ★★★ 入口校验与边界已确认 | `ave_oob` |
+| 2 | IOSurface | 2026-112477 | 内核 UAF（摘除-重插竞态） | ★★★ 关键判定位已定位 | `iosurface_race` |
+| 3 | Kernel spec_vnops | 27.2 新增 revoke 门禁 | 内核 UAF（revoke 竞态） | ★★★ 汇编级确认 | `spec_race` |
+| 4 | AppleH16ANE | 2026-112696 / 84494 | 内核 OOB write（描述符索引） | ★★☆ 校验点已定位，字段未全定 | `ane_oob` |
 | 5 | com.apple.kernel | 112507 / 84495 / 112474 等 | 未知（公告级） | ★☆☆ 未定位 | — |
 
 **窗口**：iOS 27.0 = 27.0.1（27.0.1 无安全条目），27.1 仅 iPhone Duo。**27.2 已全部修掉**，27.2.1 再修 9 条。

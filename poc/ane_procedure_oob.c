@@ -1,6 +1,6 @@
 // ane_procedure_oob.c — 目标 CVE-2026-112696 / 2026-84494 (iOS 27.0–27.1)
 //
-// fix-diff 结论（IDA，27.1 → 27.2, com.apple.driver.AppleH16ANEInterface）:
+// 目标：CVE-2026-112696 / 84494（com.apple.driver.AppleH16ANEInterface）。核心机制：
 //   27.2 新增三处固件描述符校验：
 //     sub_FFFFFE0008DA6C7C  "Procedure %u input symbol index %u out of range, totInputBuffers: %u"
 //     sub_FFFFFE0008DA7324  "Procedure %u output symbol index %u out of range, totOutputBuffers: %u"

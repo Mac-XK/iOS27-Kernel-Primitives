@@ -1,6 +1,6 @@
 // ave_av1_oob.c — 目标 CVE-2026-112466/468/469/470/705/689 (iOS 27.0–27.1)
 //
-// fix-diff 结论（IDA，27.1 913.43.1 → 27.2 913.64.1, com.apple.driver.AppleAVE2）:
+// 目标：CVE-2026-112466/468/469/470/705/689（com.apple.driver.AppleAVE2）。核心机制：
 //   dispatch: sub_FFFFFE0008820E00(ctx, params)  switch (params[22])      // +0x58 = codec type
 //       1 → AVE_Client_CheckInfo_AVC
 //       2 → AVE_HEVC_CheckVPS...      (27.2 新增校验)
@@ -16,7 +16,7 @@
 // build: clang -O2 -o ave_oob ave_av1_oob.c -framework IOKit -framework CoreFoundation
 //
 // 说明：selector 号与结构体完整布局仍需在 IDA 里核对外部方法表（见 TODO-1/2），
-// 校验函数本身已在 diff 中定位，字段偏移可信。
+// 校验函数与字段偏移均已确认。
 
 #include <stdio.h>
 #include <string.h>
